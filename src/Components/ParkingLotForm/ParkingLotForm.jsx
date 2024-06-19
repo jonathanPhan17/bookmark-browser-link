@@ -5,7 +5,7 @@ import './ParkingLotForm.css'
 
 export default function ParkingLotForm() {
     return (
-      <Form data-bs-theme="dark" className='parking-lot-form'>
+      <Form data-bs-theme="dark" className="parking-lot-form">
         <FormGroup className="parking-lot-row">
           <Label htmlFor="link-date">Date</Label>
           <Input id="link-date" name="date" type="date" required />
@@ -31,7 +31,9 @@ export default function ParkingLotForm() {
             id="prio-high"
           />
           &nbsp;
-          <label htmlFor="prio-high">High</label>
+          <label htmlFor="prio-high" className="radio-btn-row">
+            High
+          </label>
           &nbsp;
           <Input
             name="radio-priority"
@@ -40,16 +42,15 @@ export default function ParkingLotForm() {
             id="prio-medium"
           />
           &nbsp;
-          <label htmlFor="prio-medium">Medium</label>
+          <label htmlFor="prio-medium" className="radio-btn-row">
+            Medium
+          </label>
           &nbsp;
-          <Input
-            name="radio-priority"
-            type="radio"
-            value="Low"
-            id="prio-low"
-          />
+          <Input name="radio-priority" type="radio" value="Low" id="prio-low" />
           &nbsp;
-          <label htmlFor="prio-low">Low</label>
+          <label htmlFor="prio-low" className="radio-btn-row">
+            Low
+          </label>
         </FormGroup>
         <Button type="submit ">Submit</Button>
       </Form>

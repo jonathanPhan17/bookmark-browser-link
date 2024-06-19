@@ -1,0 +1,22 @@
+.parking-lot-form {
+  margin: 2rem;
+  padding: 2rem;
+  border: 1px solid whitesmoke;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(155, 155, 155, 0.7);
+  text-align: left;
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.radio-btn-row {
+  margin-right: 1rem;
+}
+
+@media (max-width: 600px) {
+  .parking-lot-form {
+    max-width: 100%;
+    overflow: scroll;
+  }
+}

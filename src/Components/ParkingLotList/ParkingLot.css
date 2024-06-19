@@ -14,6 +14,14 @@
   user-select: none;
 }
 
+@media (max-width: 600px) {
+  .parking-lot-item-container {
+    max-width: 100%;
+    margin-bottom: 2rem;
+    overflow: scroll;
+  }
+}
+
 .parking-lot-item-anchor {
   color: gold;
 }
@@ -24,4 +32,4 @@
 
 .parking-lot-item-anchor:visited {
   color: goldenrod;
-}
+} 
