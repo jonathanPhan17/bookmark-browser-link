@@ -6,8 +6,15 @@
   box-shadow: 0 0 10px rgba(155, 155, 155, 0.7);
   text-align: left;
   max-width: 50%;
+  min-width: 250px;
   margin-left: auto;
   margin-right: auto;
+  user-select: none;
+}
+
+.parking-lot-row-btn {
+  display: flex;
+  flex: wrap;
 }
 
 .radio-btn-row {

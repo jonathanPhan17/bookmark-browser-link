@@ -2,22 +2,25 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+
 }
 
 .parking-lot-item-container {
-  max-width: 30%;
-  background-color: #222222;
-  box-shadow: 0 0 10px rgba(155, 155, 155, 0.7);
+  width: 20rem;
+  box-shadow: 0 0 10px rgba(155, 155, 155, 0.3);
   border-radius: 12px;
   padding: 1rem;
   text-align: left;
   user-select: none;
 }
 
+.parking-lot-item-container:active {
+  box-shadow: 0 0 10px rgba(155,155,155, 0.7);
+}
+
 @media (max-width: 600px) {
   .parking-lot-item-container {
     max-width: 100%;
-    margin-bottom: 2rem;
     overflow: scroll;
   }
 }
@@ -33,3 +36,16 @@
 .parking-lot-item-anchor:visited {
   color: goldenrod;
 } 
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-button {
+  background-color: darkred;
+  border: none;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+}

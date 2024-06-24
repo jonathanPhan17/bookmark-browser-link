@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Form, Button, FormGroup, Label, Input } from 'reactstrap'; 
+import { Form, FormGroup, Label, Input} from 'reactstrap'; 
+import { Button } from 'antd';
+
 
 import './ParkingLotForm.css'
 
@@ -9,7 +11,7 @@ import './ParkingLotForm.css'
     High: "High",
   };
 
-export default function ParkingLotForm() {
+export default function ParkingLotForm( { addItem, isChecked, handleToggleChange } ) {
 
   const [date, setDate] = useState("");
   const [link, setLink] = useState("");
@@ -34,11 +36,27 @@ export default function ParkingLotForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(date, link, description, priority)
+    
+    const [y, M, d] = date.split('-');
+    const formattedDate = `${M}/${d}/${y}`;
+
+     addItem(formattedDate, priority, link, description);
+
+     // clear the form
+     setDate('');
+     setDescription('');
+     setLink('');
+     setPriority(PRIORITIES.Medium);
   }
 
+
+
     return (
-      <Form data-bs-theme="dark" className="parking-lot-form" onSubmit={handleSubmit}>
+      <Form
+        data-bs-theme="dark"
+        className="parking-lot-form"
+        onSubmit={handleSubmit}
+      >
         <FormGroup className="parking-lot-row">
           <Label htmlFor="link-date">Date</Label>
           <Input
@@ -72,47 +90,54 @@ export default function ParkingLotForm() {
             required
           />
         </FormGroup>
-        <FormGroup className="parking-lot-row">
-          <Input
-            name="radio-priority"
-            type="radio"
-            value={PRIORITIES.High}
-            checked={priority === PRIORITIES.High}
-            onChange={handlePriorityChange}
-            id="prio-high"
-          />
-          &nbsp;
-          <label htmlFor="prio-high" className="radio-btn-row">
-            High
-          </label>
-          &nbsp;
-          <Input
-            name="radio-priority"
-            type="radio"
-            value={PRIORITIES.Medium}
-            checked={priority === PRIORITIES.Medium}
-            onChange={handlePriorityChange}
-            id="prio-medium"
-          />
-          &nbsp;
-          <label htmlFor="prio-medium" className="radio-btn-row">
-            Medium
-          </label>
-          &nbsp;
-          <Input
-            name="radio-priority"
-            type="radio"
-            value={PRIORITIES.Low}
-            checked={priority === PRIORITIES.Low}
-            onChange={handlePriorityChange} 
-            id="prio-low"
-          />
-          &nbsp;
-          <label htmlFor="prio-low" className="radio-btn-row">
-            Low
-          </label>
+        <FormGroup className="parking-lot-row-btn">
+          <div>
+            <Input
+              name="radio-priority"
+              type="radio"
+              value={PRIORITIES.High}
+              checked={priority === PRIORITIES.High}
+              onChange={handlePriorityChange}
+              id="prio-high"
+            />
+            {" "}
+            <label htmlFor="prio-high" className="radio-btn-row">
+              High
+            </label>
+          </div>
+          {' '}
+          <div>
+            <Input
+              name="radio-priority"
+              type="radio"
+              value={PRIORITIES.Medium}
+              checked={priority === PRIORITIES.Medium}
+              onChange={handlePriorityChange}
+              id="prio-medium"
+            />
+            {' '}
+            <label htmlFor="prio-medium" className="radio-btn-row">
+              Medium
+            </label>
+          </div>
+          <div>
+            <Input
+              name="radio-priority"
+              type="radio"
+              value={PRIORITIES.Low}
+              checked={priority === PRIORITIES.Low}
+              onChange={handlePriorityChange}
+              id="prio-low"
+            />
+            &nbsp;
+            <label htmlFor="prio-low" className="radio-btn-row">
+              Low
+            </label>
+          </div>
         </FormGroup>
-        <Button type="submit ">Submit</Button>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
       </Form>
     );
 }
