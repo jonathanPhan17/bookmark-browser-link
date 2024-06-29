@@ -7,27 +7,51 @@ import './App.css';
 import ParkingLotForm from './Components/ParkingLotForm/ParkingLotForm';
 import ParkingLotList from './Components/ParkingLotList/ParkingLotList';
 import Timer from './Components/Timer/Timer';
-import Toggle from './Components/Toggle/Toggle';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Switch } from '@mui/material';
 
 
 function App() {
-
   const [parkingLotItems, setParkingLotItems] = useState(getInitialState());
-  const [isLight, setIsLight] = useState(false);
+  const [formTheme, setFormTheme] = useState("dark");
+
+  // state to manage the dark mode
+  const [toggleDarkMode, setToggleDarkMode] = useState(true);
+
+  // function to toggle the dark mode as true or false
+  const toggleDarkTheme = () => {
+    setToggleDarkMode(!toggleDarkMode);
+    setFormTheme(formTheme === "light" ? "dark" : "light");
+  };
+
+
+
+  // create a darkTheme function to handle dark theme using createTheme
+  const darkTheme = createTheme({
+    palette: {
+      mode: toggleDarkMode ? "dark" : "light", // handle theme change
+      primary: {
+        main: "#90caf9",
+      },
+      secondary: {
+        main: "#f48fb1",
+      },
+    },
+  });
 
   function saveParkingLotItems() {
-    localStorage.setItem('items', JSON.stringify(parkingLotItems))
+    localStorage.setItem("items", JSON.stringify(parkingLotItems));
   }
 
   function getInitialState() {
-    let savedState = localStorage.getItem('items');
-    if (typeof savedState === 'string') {
+    let savedState = localStorage.getItem("items");
+    if (typeof savedState === "string") {
       return JSON.parse(savedState);
     }
-      return [];
+    return [];
   }
 
-  
   function deleteItem(idToDelete) {
     setParkingLotItems((oldItems) =>
       oldItems.filter((item) => item.id !== idToDelete)
@@ -35,38 +59,40 @@ function App() {
   }
 
 
-  function handleToggle() {
-    setIsLight(!isLight);
-  }
-
-  function addItem(date, priority, link, description ) {
-    setParkingLotItems(oldItems => [
-        ...oldItems, 
-        {
-          id: nanoid(),
-          date,
-          description,
-          link,
-          priority
-        },
-    ])
+  function addItem(date, priority, link, description) {
+    setParkingLotItems((oldItems) => [
+      ...oldItems,
+      {
+        id: nanoid(),
+        date,
+        description,
+        link,
+        priority,
+      },
+    ]);
   }
 
   useEffect(saveParkingLotItems, [parkingLotItems]);
 
   return (
-    <div className="App" data-theme={isLight ? "light" : "dark"}>
-      <header>
-        <Toggle isChecked={isLight} handleToggleChange={handleToggle}/>
-        <h1>Browser Parking Lot</h1>
-        <p>Send most of your browser tabs into retirement</p>
-        <Timer />
-      </header>
-      <main>
-        <ParkingLotForm addItem={addItem} />
-        <ParkingLotList parkingLotItems={parkingLotItems} deleteItem={deleteItem} />
-      </main>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <div className="App">
+        <header>
+          <h1>Browser Parking Lot</h1>
+          <p>Send most of your browser tabs into retirement</p>
+          <Timer />
+            <Switch checked={toggleDarkMode} onChange={toggleDarkTheme}  />
+        </header>
+        <main>
+          <ParkingLotForm addItem={addItem} theme={formTheme} />
+          <ParkingLotList
+            parkingLotItems={parkingLotItems}
+            deleteItem={deleteItem}
+          />
+        </main>
+      </div>
+    </ThemeProvider>
   );
 }
 

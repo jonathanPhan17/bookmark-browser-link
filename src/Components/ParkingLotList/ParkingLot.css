@@ -2,8 +2,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-
+  margin-inline: auto;
 }
+
 
 .parking-lot-item-container {
   width: 20rem;

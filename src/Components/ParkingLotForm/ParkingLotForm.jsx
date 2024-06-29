@@ -11,7 +11,7 @@ import './ParkingLotForm.css'
     High: "High",
   };
 
-export default function ParkingLotForm( { addItem, isChecked, handleToggleChange } ) {
+export default function ParkingLotForm( { addItem, theme } ) {
 
   const [date, setDate] = useState("");
   const [link, setLink] = useState("");
@@ -53,7 +53,7 @@ export default function ParkingLotForm( { addItem, isChecked, handleToggleChange
 
     return (
       <Form
-        data-bs-theme="dark"
+        data-bs-theme={theme === 'dark' ? 'dark' : 'light'}
         className="parking-lot-form"
         onSubmit={handleSubmit}
       >
