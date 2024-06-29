@@ -21,11 +21,11 @@
   margin-right: 1rem;
 }
 
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .parking-lot-form {
     max-width: 100%;
     overflow: scroll;
     margin: auto;
     padding: auto;
   }
-}
+} */
