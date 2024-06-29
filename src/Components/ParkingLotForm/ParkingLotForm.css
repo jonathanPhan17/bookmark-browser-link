@@ -25,5 +25,7 @@
   .parking-lot-form {
     max-width: 100%;
     overflow: scroll;
+    margin: auto;
+    padding: auto;
   }
 }

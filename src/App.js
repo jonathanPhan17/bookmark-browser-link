@@ -15,22 +15,17 @@ import { Switch } from '@mui/material';
 function App() {
   const [parkingLotItems, setParkingLotItems] = useState(getInitialState());
   const [formTheme, setFormTheme] = useState("dark");
-
-  // state to manage the dark mode
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
 
-  // function to toggle the dark mode as true or false
+
   const toggleDarkTheme = () => {
     setToggleDarkMode(!toggleDarkMode);
     setFormTheme(formTheme === "light" ? "dark" : "light");
   };
 
-
-
-  // create a darkTheme function to handle dark theme using createTheme
   const darkTheme = createTheme({
     palette: {
-      mode: toggleDarkMode ? "dark" : "light", // handle theme change
+      mode: toggleDarkMode ? "dark" : "light", 
       primary: {
         main: "#90caf9",
       },
@@ -82,7 +77,10 @@ function App() {
           <h1>Browser Parking Lot</h1>
           <p>Send most of your browser tabs into retirement</p>
           <Timer />
-            <Switch checked={toggleDarkMode} onChange={toggleDarkTheme}  />
+          <Switch
+            checked={toggleDarkMode}
+            onChange={toggleDarkTheme}
+          />
         </header>
         <main>
           <ParkingLotForm addItem={addItem} theme={formTheme} />
