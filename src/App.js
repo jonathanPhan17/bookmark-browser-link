@@ -10,12 +10,14 @@ import Timer from './Components/Timer/Timer';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Switch } from '@mui/material';
+import PriorityFilter from './Components/PriorityFilter/PriorityFilter';
 
 
 function App() {
   const [parkingLotItems, setParkingLotItems] = useState(getInitialState());
   const [formTheme, setFormTheme] = useState("dark");
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
+  const [filteredParkingLotItems, setFilteredParkingLotItems] = useState([]);
 
 
   const toggleDarkTheme = () => {
@@ -67,6 +69,17 @@ function App() {
     ]);
   }
 
+  function filterItemsByPriority(priority) {
+    if (priority === "All") {
+      setFilteredParkingLotItems(parkingLotItems);
+    } else {
+      const filteredItems = parkingLotItems.filter(
+        item => item.priority === priority
+      );
+      setFilteredParkingLotItems(filteredItems);
+    }
+  }
+
   useEffect(saveParkingLotItems, [parkingLotItems]);
 
   return (
@@ -74,20 +87,23 @@ function App() {
       <CssBaseline />
       <div className="App">
         <header>
-          <h1>Browser Parking Lot</h1>
-          <p>Send most of your browser tabs into retirement</p>
+          <h1>
+            <strong>Browser Parking Lot</strong>
+          </h1>
+          <h4>Send most of your browser tabs into retirement</h4>
           <Timer />
-          <Switch
-            checked={toggleDarkMode}
-            onChange={toggleDarkTheme}
-          />
+          <Switch checked={toggleDarkMode} onChange={toggleDarkTheme} />
+          <label>{toggleDarkMode ? "🌙" : "🔆"}</label>
+          <PriorityFilter onFilterChange={filterItemsByPriority} />
         </header>
         <main>
           <ParkingLotForm addItem={addItem} theme={formTheme} />
-          <ParkingLotList
-            parkingLotItems={parkingLotItems}
-            deleteItem={deleteItem}
-          />
+          {filteredParkingLotItems.length > 0 ? (
+            <ParkingLotList
+              parkingLotItems={filteredParkingLotItems}
+              deleteItem={deleteItem}
+            />
+          ) : null}
         </main>
       </div>
     </ThemeProvider>
