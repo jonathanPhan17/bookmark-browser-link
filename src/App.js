@@ -86,7 +86,7 @@ function App() {
       <div className="App">
         <header>
           <h1>
-            <strong>Bookmark Browser Link</strong>
+            <strong>Bookmark Browser Tab</strong>
           </h1>
           <h4>Send most of your browser tabs into retirement</h4>
           <Timer />
