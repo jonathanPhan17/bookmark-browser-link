@@ -1,6 +1,6 @@
 {
-  "homepage": "http://jonathanPhan17.github.io/bookmark-browser-link",
-  "name": "bookmark-browser-link",
+  "homepage": "http://jonathanPhan17.github.io/bookmark-browser-tab",
+  "name": "bookmark-browser-tab",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

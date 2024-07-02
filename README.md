@@ -1,6 +1,6 @@
-# Bookmark Browser Link
+# Bookmark Browser Tab
 
-Hosting Link: http://jonathanPhan17.github.io/bookmark-browser-link
+Hosting Link: http://jonathanPhan17.github.io/bookmark-browser-tab
 
 The objective of this project is to store useful links with a todo items that can be prioritized using the labels HIGH, MEDIUM, LOW.  
 
