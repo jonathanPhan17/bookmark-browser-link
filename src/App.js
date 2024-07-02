@@ -3,22 +3,20 @@ import { nanoid } from 'nanoid';
 
 import './index.css';
 import './App.css';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { Switch } from "@mui/material";
 
 import ParkingLotForm from './Components/ParkingLotForm/ParkingLotForm';
 import ParkingLotList from './Components/ParkingLotList/ParkingLotList';
 import Timer from './Components/Timer/Timer';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { Switch } from '@mui/material';
 import PriorityFilter from './Components/PriorityFilter/PriorityFilter';
-
 
 function App() {
   const [parkingLotItems, setParkingLotItems] = useState(getInitialState());
   const [formTheme, setFormTheme] = useState("dark");
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
   const [filteredParkingLotItems, setFilteredParkingLotItems] = useState([]);
-
 
   const toggleDarkTheme = () => {
     setToggleDarkMode(!toggleDarkMode);
@@ -94,16 +92,15 @@ function App() {
           <Timer />
           <Switch checked={toggleDarkMode} onChange={toggleDarkTheme} />
           <label>{toggleDarkMode ? "🌙" : "🔆"}</label>
-          <PriorityFilter onFilterChange={filterItemsByPriority} />
         </header>
         <main>
           <ParkingLotForm addItem={addItem} theme={formTheme} />
-          {filteredParkingLotItems.length > 0 ? (
-            <ParkingLotList
-              parkingLotItems={filteredParkingLotItems}
-              deleteItem={deleteItem}
-            />
-          ) : null}
+          <PriorityFilter onFilterChange={filterItemsByPriority} />
+          <ParkingLotList
+            parkingLotItems={filteredParkingLotItems}
+            deleteItem={deleteItem}
+            isEmpty={filteredParkingLotItems.length === 0}
+          />
         </main>
       </div>
     </ThemeProvider>
