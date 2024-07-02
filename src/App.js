@@ -5,12 +5,12 @@ import './index.css';
 import './App.css';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Switch } from "@mui/material";
 
 import ParkingLotForm from './Components/ParkingLotForm/ParkingLotForm';
 import ParkingLotList from './Components/ParkingLotList/ParkingLotList';
 import Timer from './Components/Timer/Timer';
 import PriorityFilter from './Components/PriorityFilter/PriorityFilter';
+import ToggleThemeButton from './Components/ToggleThemeButton/ToggleThemeButton';
 
 function App() {
   const [parkingLotItems, setParkingLotItems] = useState(getInitialState());
@@ -18,23 +18,6 @@ function App() {
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
   const [filteredParkingLotItems, setFilteredParkingLotItems] = useState([]);
   const [currentFilter, setCurrentFilter] = useState("All")
-
-  const toggleDarkTheme = () => {
-    setToggleDarkMode(!toggleDarkMode);
-    setFormTheme(formTheme === "light" ? "dark" : "light");
-  };
-
-  const darkTheme = createTheme({
-    palette: {
-      mode: toggleDarkMode ? "dark" : "light", 
-      primary: {
-        main: "#90caf9",
-      },
-      secondary: {
-        main: "#f48fb1",
-      },
-    },
-  });
 
   function saveParkingLotItems() {
     localStorage.setItem("items", JSON.stringify(parkingLotItems));
@@ -72,6 +55,18 @@ function App() {
     setCurrentFilter(priority);
   }
 
+  const darkTheme = createTheme({
+      palette: {
+        mode: toggleDarkMode ? "dark" : "light",
+        primary: {
+          main: "#90caf9",
+        },
+        secondary: {
+          main: "#f48fb1",
+        },
+      },
+    });
+
   useEffect(() => {
     if (currentFilter === "All") {
       setFilteredParkingLotItems(parkingLotItems);
@@ -95,8 +90,11 @@ function App() {
           </h1>
           <h4>Send most of your browser tabs into retirement</h4>
           <Timer />
-          <Switch checked={toggleDarkMode} onChange={toggleDarkTheme} />
-          <label>{toggleDarkMode ? "🌙" : "🔆"}</label>
+          <ToggleThemeButton
+            toggleDarkMode={toggleDarkMode}
+            setToggleDarkMode={setToggleDarkMode}
+            setFormTheme={setFormTheme}
+          />
         </header>
         <main>
           <ParkingLotForm addItem={addItem} theme={formTheme} />

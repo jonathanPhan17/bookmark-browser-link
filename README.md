@@ -16,16 +16,18 @@ The Bookmark Browser Link enables you to eliminate tabs in your browser. Therefo
 ## User stories 
 
 ```
-As a student  
-I want to organize and prioritize information for my research  
-So that I can get a good grade 
+As a movie enthusiast
+I want to manage and prioritize my watchlist across various streaming platforms
+So that I can easily decide what to watch next without switching between services.
 
-As a software developer  
-I want to save and prioritize my tutorial videos outside the browser 
-So that I can focus on my work using just a few browser tabs 
+As a researcher
+I want to save and categorize important academic papers and articles
+So that I can quickly reference them when writing my thesis.
 
-As a Video Site (Netflix, Amazon Prime Video, HBO) subscriber  
-I want to prioritize my watchlist across subscription services  
-So that I know what to watch next 
+As a cryptocurrency trader
+I want to save and prioritize links to market analysis and news
+So that I can make informed trading decisions quickly.
+
+
 ```
 

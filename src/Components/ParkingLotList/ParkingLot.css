@@ -16,7 +16,8 @@
 }
 
 .parking-lot-item-container:active {
-  box-shadow: 0 0 10px rgba(155,155,155, 0.7);
+  /* box-shadow: 0 0 10px rgba(155,155,155, 0.7); */
+  box-shadow: 5px 5px solid black;
 }
 
 @media (max-width: 600px) {
