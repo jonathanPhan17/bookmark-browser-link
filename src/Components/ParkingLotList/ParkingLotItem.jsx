@@ -2,14 +2,11 @@ import React from 'react';
 
 import { Card, CardHeader, CardBody, CardTitle, CardText, Button } from 'reactstrap'; 
 
-
-
 export default function ParkingLotItem({id, date, priority, link, description, deleteItem}) {
 
   function handleDelete() {
     deleteItem(id);
   }
-
 
   return (
     <>

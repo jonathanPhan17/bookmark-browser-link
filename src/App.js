@@ -17,6 +17,7 @@ function App() {
   const [formTheme, setFormTheme] = useState("dark");
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
   const [filteredParkingLotItems, setFilteredParkingLotItems] = useState([]);
+  const [currentFilter, setCurrentFilter] = useState("All")
 
   const toggleDarkTheme = () => {
     setToggleDarkMode(!toggleDarkMode);
@@ -68,15 +69,19 @@ function App() {
   }
 
   function filterItemsByPriority(priority) {
-    if (priority === "All") {
+    setCurrentFilter(priority);
+  }
+
+  useEffect(() => {
+    if (currentFilter === "All") {
       setFilteredParkingLotItems(parkingLotItems);
     } else {
       const filteredItems = parkingLotItems.filter(
-        item => item.priority === priority
+        item => item.priority === currentFilter
       );
       setFilteredParkingLotItems(filteredItems);
     }
-  }
+  }, [parkingLotItems, currentFilter])
 
   useEffect(saveParkingLotItems, [parkingLotItems]);
 

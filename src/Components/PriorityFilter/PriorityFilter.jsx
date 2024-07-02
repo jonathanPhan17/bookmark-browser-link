@@ -8,30 +8,27 @@ export default function PriorityFilter({ onFilterChange }) {
 
   const theme = useTheme();
 
-   const buttonStyle = {
-     backgroundColor:
-       theme.palette.mode === "dark"
-         ? theme.palette.grey[800]
-         : theme.palette.grey[300],
-     color:
-       theme.palette.mode === "dark"
-         ? theme.palette.grey[300]
-         : theme.palette.grey[800],
-   };
+  const isDarkMode = theme.palette.mode === "dark";
+  const filterButtonTheme = {
+    backgroundColor: isDarkMode
+      ? theme.palette.grey[800]
+      : theme.palette.grey[300],
+    color: isDarkMode ? theme.palette.grey[300] : theme.palette.grey[800],
+  };
 
   return (
     <>
       <ButtonGroup className="filter-btn-container" >
-        <Button style={buttonStyle} onClick={() => onFilterChange("All")}>
+        <Button style={filterButtonTheme} onClick={() => onFilterChange("All")}>
           All
         </Button>
-        <Button style={buttonStyle} onClick={() => onFilterChange("Low")}>
+        <Button style={filterButtonTheme} onClick={() => onFilterChange("Low")}>
           Low
         </Button>
-        <Button style={buttonStyle} onClick={() => onFilterChange("Medium")}>
+        <Button style={filterButtonTheme} onClick={() => onFilterChange("Medium")}>
           Medium
         </Button>
-        <Button style={buttonStyle} onClick={() => onFilterChange("High")}>
+        <Button style={filterButtonTheme} onClick={() => onFilterChange("High")}>
           High
         </Button>
       </ButtonGroup>
